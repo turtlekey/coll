@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# create collector
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do 
+	DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null && pwd )"
+	SOURCE="$(readlink "$SOURCE")"
+	[[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+path="$( cd -P "$( dirname "$SOURCE" )" >/dev/null && pwd )"
+
+if test !$path/collector; then
+	touch $path/collector
+fi
+
+# argument identifying
+while getopts 'alhr:s:' OPTION; do
+	case "$OPTION" in
+		a)
+			echo -n "please input the command: "
+			read commandd
+			echo -n "please input the comment: "
+			read comment
+			echo \{\"command\":\"$commandd\",\"comment\":\"$comment\"\} >> $path/collector
+			;;
+
+		r)
+			string="$OPTARG"
+			sed -i "/$string/d" $path/collector
+			;;
+
+		s)
+			string="$OPTARG"
+			echo "==========="
+			grep --color $string $path/collector	
+			echo "==========="
+			;;
+
+		l)
+			echo "==========="
+			grep comment $path/collector
+			echo "==========="
+			;;
+
+		h)
+			echo "==========="
+			echo "[-h] for help"
+			echo "[-a] add command"
+			echo "[-r] remove command"
+			echo "[-s] search command"
+			echo "[-l] list all the commands" 
+			echo "==========="
+			;;
+		?)
+			echo "the argument should be [-a] [-r] [-s] [-l]"
+	esac
+done
+# shift "$(($OPTIND - 1))" 

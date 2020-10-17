@@ -1,0 +1,12 @@
+{
+"tool-name": "coll",
+"author": "turtlekey",
+"aim": "collecting and reusing of CLI command",
+"usage": [
+		{"coll -h": "for help"},
+		{"coll -a": "add command"},
+		{"coll -r": "remove command"},
+		{"coll -s": "search command"},
+		{"coll -l": "list all the commands}"			
+	]
+}

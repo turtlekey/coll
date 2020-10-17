@@ -1,0 +1,2 @@
+{"command":"pwd","comment":"present working directory"}
+{"command":"cd","comment":"change directory"}
