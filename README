@@ -8,5 +8,6 @@
 		{"coll -r": "remove command"},
 		{"coll -s": "search command"},
 		{"coll -l": "list all the commands}"			
-	]
+	],
+"other": "all the commands will be saved in 'collector' with JSON format"
 }
