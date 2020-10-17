@@ -1,2 +1,3 @@
 {"command":"pwd","comment":"present working directory"}
 {"command":"cd","comment":"change directory"}
+{"command":"du","comment":"disk usage"}
